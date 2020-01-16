@@ -1,6 +1,6 @@
 NAME = mutateme
-IMAGE_PREFIX = alexleonhardt
-IMAGE_NAME = $$(basename `pwd`)
+IMAGE_PREFIX = rzhang
+IMAGE_NAME = mutate-webhook
 IMAGE_VERSION = $$(git log --abbrev-commit --format=%h -s | head -n 1)
 
 export GO111MODULE=on
@@ -28,10 +28,9 @@ kind:
 	kind create cluster --config kind.yaml
 
 deploy:
-	export KUBECONFIG=$$(kind get kubeconfig-path --name="kind"); kubectl apply -f deploy/
+	kubectl apply -f deploy/
 
 reset:
-	export KUBECONFIG=$$(kind get kubeconfig-path --name="kind"); kubectl delete -f deploy/
-	kind delete cluster --name kind
+	kubectl delete -f deploy/
 
 .PHONY: docker push kind deploy reset

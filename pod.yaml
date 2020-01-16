@@ -4,7 +4,7 @@ kind: Pod
 metadata:
   name: c7m
   labels:
-    name: c7m
+    app: mutate-test
 spec:
   containers:
   - name: c7m
