@@ -38,11 +38,11 @@ it'll be tagged with the current git commit (short `ref`) and `:latest`
 
 don't forget to update `IMAGE_PREFIX` in the Makefile or set it when running `make`
 
-### images
-
-[`alexleonhardt/k8s-mutate-webhook`](https://cloud.docker.com/repository/docker/alexleonhardt/k8s-mutate-webhook)
-
-
+```
+docker login --username=zeus@aliyun-inner.com registry.us-west-1.aliyuncs.com
+docker tag [ImageId] registry.us-west-1.aliyuncs.com/apphub/test-mutate:[tag]
+docker push registry.us-west-1.aliyuncs.com/apphub/test-mutate:[tag]
+```
 
 ## watcher
 
@@ -51,7 +51,12 @@ useful during devving ...
 ```
 watcher -watch github.com/alex-leonhardt/k8s-mutate-webhook -run github.com/alex-leonhardt/k8s-mutate-webhook/cmd/
 ```
-
+## run
+```
+make docker
+make deploy
+kubectl apply -f pod.yaml
+```
 ## kudos
 
 - [https://github.com/morvencao/kube-mutating-webhook-tutorial](https://github.com/morvencao/kube-mutating-webhook-tutorial)
